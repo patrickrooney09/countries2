@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import countryService from "./services/countries.js";
+import CountryList from "./components/CountryList.jsx";
+import CountrySearch from "./components/CountrySearch.jsx";
 
 function App() {
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    console.log("use effect running");
-
     countryService.getAll().then((response) => {
-      console.log("promise fulfilled");
-      console.log(response.data);
       setCountries(response.data);
     });
   }, []);
@@ -17,11 +15,8 @@ function App() {
   return (
     <div>
       <h1>Countries</h1>
-      <ul>
-        {countries.map((currentCountry) => {
-          return <li>{currentCountry.name.common}</li>;
-        })}
-      </ul>
+      <CountrySearch setCountries={setCountries} countries={countries} />
+      <CountryList countries={countries} />
     </div>
   );
 }
