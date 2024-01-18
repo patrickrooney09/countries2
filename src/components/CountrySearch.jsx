@@ -1,7 +1,7 @@
 import countryServices from "../services/countries";
 
 function CountrySearch(props) {
-  const { setCountries, countries } = props;
+  const { setCountries, setShowDetails } = props;
 
   const handleInput = () => {
     const searchValue = event.target.value;
@@ -15,6 +15,11 @@ function CountrySearch(props) {
           return currentCountry;
         }
       });
+      if (filteredList.length === 1) {
+        setShowDetails(true);
+      } else {
+        setShowDetails(false);
+      }
       setCountries(filteredList);
     });
   };

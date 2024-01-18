@@ -5,6 +5,7 @@ import CountrySearch from "./components/CountrySearch.jsx";
 
 function App() {
   const [countries, setCountries] = useState([]);
+  const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
     countryService.getAll().then((response) => {
@@ -15,8 +16,15 @@ function App() {
   return (
     <div>
       <h1>Countries</h1>
-      <CountrySearch setCountries={setCountries} countries={countries} />
-      <CountryList countries={countries} />
+      <CountrySearch
+        setCountries={setCountries}
+        setShowDetails={setShowDetails}
+      />
+      <CountryList
+        countries={countries}
+        showDetails={showDetails}
+        setShowDetails={setShowDetails}
+      />
     </div>
   );
 }
