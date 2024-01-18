@@ -1,27 +1,30 @@
-function SingleCountry(props) {
-  const { country, showDetails, setShowDetails } = props;
-  return showDetails === true ? (
-    <li>
-      <div>
-        <h2>{country.name.common}</h2>
-        <div>
-          <div>capital: {country.capital[0]}</div>
-          <div>area: {country.area}</div>
-        </div>
+import { useState } from "react";
 
-        <div>
-          <strong>Languages:</strong>
-          <ul>
-            {Object.keys(country.languages).map((currentLanguage, index) => {
-              return <li key={index}>{country.languages[currentLanguage]}</li>;
-            })}
-          </ul>
-        </div>
-        <img src={country.flags.png} />
-      </div>
-    </li>
+import SingleCountryDetailed from "./SingleCountryDetailed";
+
+function SingleCountry(props) {
+  const { country, isOneCountry } = props;
+
+  const [display, setDisplay] = useState(false);
+
+  const handleClick = () => {
+    setDisplay(!display);
+  };
+
+  return isOneCountry === true ? (
+    <SingleCountryDetailed country={country} />
+  ) : display === true ? (
+    <div>
+      <SingleCountryDetailed country={country} />
+      <button onClick={handleClick}>hide</button>
+    </div>
   ) : (
-    <li>{country.name.common}</li>
+    <div>
+      <li>
+        {country.name.common}
+        <button onClick={handleClick}>show</button>
+      </li>
+    </div>
   );
 }
 export default SingleCountry;

@@ -1,19 +1,19 @@
 import SingleCountry from "./SingleCountry";
 
 function CountryList(props) {
-  const { countries, showDetails, setShowDetails } = props;
+  const { countries, isOneCountry, setIsOneCountry } = props;
 
   return countries.length > 10 ? (
     <div>narrow your search</div>
   ) : (
-    <ul>
+    <ul style={{ listStyleType: "none" }}>
       {countries.map((currentCountry, index) => {
         return (
           <SingleCountry
             country={currentCountry}
             key={index}
-            showDetails={showDetails}
-            setShowDetails={setShowDetails}
+            isOneCountry={isOneCountry}
+            setIsOneCountry={setIsOneCountry}
           />
         );
       })}

@@ -5,7 +5,7 @@ import CountrySearch from "./components/CountrySearch.jsx";
 
 function App() {
   const [countries, setCountries] = useState([]);
-  const [showDetails, setShowDetails] = useState(false);
+  const [isOneCountry, setIsOneCountry] = useState(false);
 
   useEffect(() => {
     countryService.getAll().then((response) => {
@@ -18,12 +18,12 @@ function App() {
       <h1>Countries</h1>
       <CountrySearch
         setCountries={setCountries}
-        setShowDetails={setShowDetails}
+        setIsOneCountry={setIsOneCountry}
       />
       <CountryList
         countries={countries}
-        showDetails={showDetails}
-        setShowDetails={setShowDetails}
+        isOneCountry={isOneCountry}
+        setIsOneCountry={setIsOneCountry}
       />
     </div>
   );

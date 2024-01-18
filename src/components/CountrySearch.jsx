@@ -1,7 +1,7 @@
 import countryServices from "../services/countries";
 
 function CountrySearch(props) {
-  const { setCountries, setShowDetails } = props;
+  const { setCountries, setIsOneCountry } = props;
 
   const handleInput = () => {
     const searchValue = event.target.value;
@@ -16,9 +16,9 @@ function CountrySearch(props) {
         }
       });
       if (filteredList.length === 1) {
-        setShowDetails(true);
+        setIsOneCountry(true);
       } else {
-        setShowDetails(false);
+        setIsOneCountry(false);
       }
       setCountries(filteredList);
     });
