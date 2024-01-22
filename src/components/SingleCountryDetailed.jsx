@@ -5,6 +5,9 @@ function SingleCountryDetailed(props) {
   const { country } = props;
 
   const [temp, setTemp] = useState(0);
+  const [icon, setIcon] = useState("");
+  const [description, setDescription] = useState("");
+  const [windSpeed, setWindSpeed] = useState("");
 
   useEffect(() => {
     countryService
@@ -15,6 +18,11 @@ function SingleCountryDetailed(props) {
       .then((response) => {
         console.log(response.data);
         setTemp(response.data.current.temp);
+        setIcon(
+          `https://openweathermap.org/img/wn/${response.data.current.weather[0].icon}@2x.png`
+        );
+        setDescription(response.data.current.weather[0].description);
+        setWindSpeed(response.data.current.wind_speed);
       });
   }, []);
 
@@ -43,6 +51,9 @@ function SingleCountryDetailed(props) {
         <div>
           <h3>Weather in {country.capital[0]}</h3>
           <div>{temp} Farenheit</div>
+          <img src={icon} />
+          <div>{description}</div>
+          <div>Wind Speed: {windSpeed} mph</div>
         </div>
       </div>
     </li>
